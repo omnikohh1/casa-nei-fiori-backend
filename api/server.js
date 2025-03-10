@@ -4,8 +4,6 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
-// Non è più necessaria la funzione getBrowser separata, la logica è integrata nella route
-
 app.get("/", (req, res) => {
     res.send("✅ Il server è attivo! Usa /checkAvailability per verificare la disponibilità.");
 });
@@ -24,11 +22,11 @@ app.get("/checkAvailability", async (req, res) => {
         console.log(`🔍 Controllo disponibilità per: ${apartment} | Check-in: ${checkIn}, Check-out: ${checkOut}`);
 
         browser = await puppeteer.launch({
-            args: ['--no-sandbox', '--disable-setuid-sandbox'], // Opzioni necessarie
-            //  timeout: 60000 // Opzionale: Aumenta il timeout se necessario (in millisecondi)
+            args: ['--no-sandbox', '--disable-setuid-sandbox'], //Opzioni necessarie
+            timeout: 0, // Imposta il timeout a 0 (nessun timeout)
         });
         const page = await browser.newPage();
-        await page.goto(url, { waitUntil: "networkidle2", timeout: 90000 });
+        await page.goto(url, { waitUntil: "networkidle2", timeout: 0 }); // Imposta il timeout a 0
 
         const availableRooms = await page.evaluate(() => {
             const roomElements = document.querySelectorAll(".mphb-room-type-title a");
@@ -55,9 +53,3 @@ app.get("/checkAvailability", async (req, res) => {
 
 // Esporta l'app come modulo (fondamentale per Vercel)
 module.exports = app;
-
-// Rimuovi queste righe:
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//     console.log(`🚀 Server in esecuzione sulla porta ${PORT}`);
-// });
