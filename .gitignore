@@ -1,46 +1,32 @@
-# Miscellaneous
-*.class
+# Node.js
+node_modules/
+
+# File di log
 *.log
-*.pyc
+
+# File temporanei dell'editor
 *.swp
 .DS_Store
-.atom/
-.build/
-.buildlog/
-.history
-.svn/
-.swiftpm/
-migrate_working_dir/
 
-# IntelliJ related
+# Cartella di build (se la usi per il backend, ma di solito non serve)
+# /build/  <-- Commentata! Rimuovi il commento SOLO se usi una cartella build per il backend
+
+# File specifici di Vercel (se non li usi, puoi rimuovere queste righe)
+.vercel
+
+# File specifici di IDEs (IntelliJ, VS Code - opzionali, ma consigliati)
 *.iml
 *.ipr
 *.iws
 .idea/
+#.vscode/  <-- Generalmente si tiene, ma se vuoi puoi decommentare
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# Altri file temporanei (opzionali, ma consigliati)
+*.pyc
 
-# Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.pub-cache/
-.pub/
-/build/
+# File specifici del tuo progetto (se ne hai)
+# Aggiungi qui eventuali file o cartelle specifici del *tuo* progetto
+# che vuoi ignorare, ma che non rientrano nelle categorie precedenti.
 
-# Symbolication related
-app.*.symbols
-
-# Obfuscation related
-app.*.map.json
-
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
-.vercel
+# macOS Finder
+.DS_Store
